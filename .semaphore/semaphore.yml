@@ -27,6 +27,9 @@ blocks:
           - checkout
           - cache restore
           - npm install
+          - node --version
+          - npm --version
+          - nvm --version
       jobs:
         - name: npm test
           commands:
