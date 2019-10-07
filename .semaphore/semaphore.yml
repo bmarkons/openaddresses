@@ -9,6 +9,7 @@ blocks:
     task:
       prologue:
         commands:
+          - sem-version node 6
           - checkout
       jobs:
         - name: npm install
