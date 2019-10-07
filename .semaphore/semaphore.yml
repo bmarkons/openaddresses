@@ -1,0 +1,33 @@
+version: v1.0
+name: First pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Install dependencies
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: npm install
+          commands:
+            - npm install
+      epilogue:
+        on_pass:
+          commands:
+            - cache store
+  - name: Test
+    task:
+      prologue:
+        commands:
+          - sem-version node 6
+          - nvm use || true
+          - checkout
+          - cache restore
+          - npm install
+      jobs:
+        - name: npm test
+          commands:
+            - npm test
