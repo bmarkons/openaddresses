@@ -23,8 +23,6 @@ blocks:
     task:
       prologue:
         commands:
-          - sem-version node 6
-          - nvm use || true
           - checkout
           - cache restore
           - npm install
